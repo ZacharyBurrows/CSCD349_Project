@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 namespace CSCD349Project
 {
     public class Party
@@ -21,10 +22,10 @@ namespace CSCD349Project
                 _messaging = messaging;
         }
 
-        public void AcquireGameItem(GameItem newItem)
+        public void AddGameItem(GameItem newItem)
         {
             if (newItem == null)
-                return;
+                throw new Exception("The GameItem passed nto AcquireGameItem was null!!!");
 
             AddMessage("party " + _Name + " recieves new item " + newItem._name);
             if (_Inventory != null)
@@ -58,7 +59,8 @@ namespace CSCD349Project
             output += "name: " + _Name + "\n";
             output += "cell: \n"     + _OccupiedCell.ToString() + "\n";
             output += "characters: \n" + string.Join("\n", (object[])_Characters.ToArray());
-            output += "#------------------------#\n";
+            output += "inventory: \n" + string.Join("\n", (object[])_Inventory.ToArray());
+            output += "\n#------------------------#\n";
             return output;
         }
 

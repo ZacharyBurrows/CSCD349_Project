@@ -28,6 +28,11 @@ namespace CSCD349Project
                 _Messaging.AddMessage(newString);
             }
         }
+
+        public override string ToString()
+        {
+            return _name;
+        }
         
         public GameItem()
         {

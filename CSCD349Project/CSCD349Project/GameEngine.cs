@@ -30,7 +30,7 @@ namespace CSCD349Project
             _Maps = new List<Map>();
             _messaging = new Messaging();
             GameCharacter.SetMessaging(_messaging);
-            
+            Party.SetMessaging(_messaging);
             // create the maps
             for (int i = 0; i < noLevels; ++i)
                 _Maps.Add(new Map(CSCD349Project.Properties.Resources.level0));
@@ -71,7 +71,7 @@ namespace CSCD349Project
             GameCharacter gargoyle = new Gargoyle();
             GameCharacter leprachaun = new Leprachaun();
             
-
+            
 
             Party goodParty = new Party("good party", _Maps[0].GetCellAt(0, 0));
             goodParty.AddCharacter(warrior);
@@ -112,8 +112,7 @@ namespace CSCD349Project
 
 
             
-            for (int i = 0; i < 30; ++i)
-            {
+         
                 warrior.PerformActiveAttack(landShark);
                 mage.PerformActiveAttack(gargoyle);
                 scout.PerformActiveAttack(leprachaun);
@@ -121,17 +120,19 @@ namespace CSCD349Project
                 landShark.PerformActiveAttack(warrior);
                 gargoyle.PerformActiveAttack(mage);
                 leprachaun.PerformActiveAttack(scout);
-            }
             
+
+            
+            
+            GameItem largeHealthPotion = new LargeHealthPotion();
+            GameItem largeEnergyPotion = new LargeEnergyPotion();
+
+            goodParty.AddGameItem(largeHealthPotion);
+            goodParty.AddGameItem(largeEnergyPotion);
+
             Console.WriteLine(goodParty.ToString());
             Console.WriteLine(badParty.ToString());
-            
-            //PrintArray(_messaging.getLatestMessages());
-
-
-
-
-
+            PrintArray(_messaging.getLatestMessages());
 
 
             // Place good party in map (active cell)
