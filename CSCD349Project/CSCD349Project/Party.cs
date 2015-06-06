@@ -21,6 +21,16 @@ namespace CSCD349Project
                 _messaging = messaging;
         }
 
+        public void AcquireGameItem(GameItem newItem)
+        {
+            if (newItem == null)
+                return;
+
+            AddMessage("party " + _Name + " recieves new item " + newItem._name);
+            if (_Inventory != null)
+                _Inventory.Add(newItem);
+        }
+
         public void AddMessage(string message)
         {
             if (_messaging != null && message != null)
