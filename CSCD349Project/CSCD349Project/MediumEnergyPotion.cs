@@ -17,7 +17,7 @@ namespace CSCD349Project
         public override void Use(GameCharacter character)
         {
             character.GetAttributes()._energy += 35;
-            Console.WriteLine("The potion restored 35 energy points!");
+            AddMessage("The potion restored 35 energy points!");
         }
     }
 }
