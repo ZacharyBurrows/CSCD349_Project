@@ -55,7 +55,7 @@ namespace CSCD349Project
                     string line = "";
                     char[] lineChars;
                     char curChar;
-                    int[] curCoords = new int[2];
+                    int[] curCoords;
 
                     //Read in dimensions
                     if ((line = sr.ReadLine()) != null)
@@ -66,7 +66,7 @@ namespace CSCD349Project
                     _Dimensions = new int[]{noRows, noCols};
 
                     _Cells = new Cell[noRows, noCols];
-
+                    
                     //Read in map
                     for(int r=0; r<noRows; r++)
                     {
@@ -74,8 +74,10 @@ namespace CSCD349Project
                         lineChars = line.ToCharArray();
                         for(int c=0; c<noCols; c++)
                         {
+                            curCoords = new int[2];
                             curCoords[0] = r; curCoords[1] = c;
                             curChar = lineChars[c];
+                            
                             //int[] coordinates, Map thisMap, bool traversable, bool start, bool finish
                             switch(curChar)
                             {

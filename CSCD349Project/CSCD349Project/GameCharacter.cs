@@ -11,6 +11,14 @@ namespace CSCD349Project
         private static Messaging _Messaging;
         private static Random random;
 
+        public void SetParty(Party newParty) 
+        { 
+            if(newParty != null)
+            {
+                _Party = newParty;
+            }
+        }
+
         public GameCharacter(string name) : base(name)
         {
             _Name = name;
@@ -80,11 +88,20 @@ namespace CSCD349Project
             }
             else
             {
-                AddMessage(this.GetName() + "'s " + activeDefense.ToString() + "defense was unsuccessful! No damage will be prevented!");
+                AddMessage(this.GetName() + "'s " + activeDefense.ToString() + " defense was unsuccessful! No damage will be prevented!");
                 defenderAttributes._health -= Math.Max(0, incomingDamage);
                 AddMessage(this.GetName() + " lost " + Math.Max(0,incomingDamage) + " health points");
             }
+            if (GetAttributes()._health == 0)
+                HandleDeath();
         }
+
+        private void HandleDeath()
+        {
+            _Messaging.AddMessage(GetName() + " has died :(");
+            _Party.HandleCharacterDeath(this);
+        }
+
 
         private bool AbilitySuccessful(double abilitySuccessRate)
         {

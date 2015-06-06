@@ -7,7 +7,7 @@ namespace CSCD349Project
         private string _Name;
         private List<GameCharacter> _Characters;
         private List<GameItem> _Inventory;
-
+        private static Messaging _messaging;
         public Party(string name, Cell cell)
         {
             _Name = name;
@@ -15,7 +15,17 @@ namespace CSCD349Project
             _Characters = new List<GameCharacter>();
             _Inventory  = new List<GameItem>();
         }
+        public static void SetMessaging(Messaging messaging)
+        {
+            if (messaging != null)
+                _messaging = messaging;
+        }
 
+        public void AddMessage(string message)
+        {
+            if (_messaging != null && message != null)
+                _messaging.AddMessage(message);
+        }
         public List<GameItem> GetIventory() { return _Inventory; }
         public List<GameCharacter> GetCharacters() { return _Characters; }
         public string GetName() { return _Name; }        
@@ -24,6 +34,7 @@ namespace CSCD349Project
             _Characters.Add(character);
             return _Characters.Count;
         }
+
 
         public bool RemoveCharacter(GameCharacter character)
         {
@@ -34,10 +45,23 @@ namespace CSCD349Project
         {
             string output = "\n";
             output += "#--------- party ---------#\n";
+            output += "name: " + _Name + "\n";
             output += "cell: \n"     + _OccupiedCell.ToString() + "\n";
-            output += "characters: " + string.Join("\n", (object[])_Characters.ToArray());
+            output += "characters: \n" + string.Join("\n", (object[])_Characters.ToArray());
             output += "#------------------------#\n";
             return output;
+        }
+
+        internal void HandleCharacterDeath(GameCharacter deadPlayer)
+        {
+            try
+            {
+                _Characters.Remove(deadPlayer);
+            }
+            catch
+            {
+
+            }
         }
     }
 }
