@@ -19,7 +19,7 @@ namespace CSCD349Project
             //We can adjust the values to achieve a better balance. AH
             character.GetAttributes()._health += 25.0;
             //Test text
-            Console.WriteLine("The potion healed 25 health!");
+            AddMessage("The potion healed 25 health!");
 
         }
     }

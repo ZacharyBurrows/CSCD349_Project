@@ -4,6 +4,7 @@ namespace CSCD349Project
     {
         private string _Description;
         private string _Name;
+        private static Messaging _Messaging;
         public string _description
         {
             get { return _Description; }
@@ -14,6 +15,20 @@ namespace CSCD349Project
             get { return _Name; }
             set { _Name = value; }
         }
+        
+        public static void SetMessaging(Messaging newMessaging)
+        {
+            _Messaging = newMessaging;
+        }
+        
+        public void AddMessage(string newString)
+        {
+            if(newString != null)
+            {
+                _Messaging.AddMessage(newString);
+            }
+        }
+        
         public GameItem()
         {
         }
