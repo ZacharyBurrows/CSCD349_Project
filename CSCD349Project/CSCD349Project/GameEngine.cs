@@ -31,6 +31,7 @@ namespace CSCD349Project
             _messaging = new Messaging();
             GameCharacter.SetMessaging(_messaging);
             Party.SetMessaging(_messaging);
+            GameItem.SetMessaging(_messaging);
             // create the maps
             for (int i = 0; i < noLevels; ++i)
                 _Maps.Add(new Map(CSCD349Project.Properties.Resources.level0));
