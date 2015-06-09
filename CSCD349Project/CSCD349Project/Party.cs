@@ -78,10 +78,13 @@ namespace CSCD349Project
 
        public void PartyRegenEnergy(double percentRegen)
        {
-           var list = this._Characters;
-
-           foreach (var item in list)
-               item.GetAttributes()._energy = (percentRegen / 100)*(item.GetAttributes()._baseEnergy);
+           if(percentRegen >= 0 && percentRegen <= 100)
+           {
+               var list = this._Characters;
+    
+               foreach (var item in list)
+                   item.GetAttributes()._energy = (percentRegen / 100)*(item.GetAttributes()._baseEnergy);
+           }
        }
     }
 }
